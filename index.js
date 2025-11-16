@@ -1,5 +1,19 @@
-const { login } = require('./auth');
-console.log(login("admin", "1234")); // Should print "Login successful!"
-console.log(login("user", "pass")); // Should print "Invalid credentials!"
-// index.js
-console.log("Hello, World!");
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/about') {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('About Page\n');
+  } else {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World!\n');
+  }
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
